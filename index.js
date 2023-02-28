@@ -33,3 +33,19 @@ class Tamagotchi {
 
     }
 }
+
+let tForm = document.querySelector('#createTamagotchi');
+console.log(tForm);
+
+tForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+    
+    let tamName = document.querySelector('#tName').value;
+    console.log(tamName);
+
+    let tamType = document.querySelector("#tType").value;
+    console.log(tamType);
+    
+    
+})
+

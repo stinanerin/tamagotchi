@@ -11,17 +11,21 @@
 </head>
 <body>
     <h1>tamagotchi</h1>
-    <h2>Don't kill me</h2>
-    <label for="tName">Name your 
-        <input id="tName" type="text" placeholder="Name" />
-    </label>
-    <select>
-        <option value="" disabled selected hidden>Choose your buddy</option>
-        <option value="blush">(๑-﹏-๑)</option>
-        <option value="mad">(๑•̀ ᴖ •́)૭</option>
-        <option value="sassy">(˵ •̀ ᴗ - ˵ ) ✧)</option>
-    </select>
-
+    <h2>hi! don't kill me</h2>
+    <form id="createTamagotchi">
+        <label for="tName">What is my name?
+            <input id="tName" type="text" placeholder="Name" required />
+        </label>
+        <select id="tType" required>
+            <option value="" disabled selected hidden>What am I like</option>
+            <option value="blush">(๑-﹏-๑)</option>
+            <option value="mad">(๑•̀ ᴖ •́)૭</option>
+            <option value="sassy">(˵ •̀ ᴗ - ˵ ) ✧)</option>
+        </select>
+        
+        <button type="submit" id="createBtn">Let´s play</button>
+    </form>
+    
 
 </body>
 </html>
