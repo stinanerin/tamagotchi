@@ -23,20 +23,29 @@ class Tamagotchi {
         this.loneliness = lonely + 10;
         this.happiness = happy + 10;
     }
-    play() {
+    play(tired, hungry, lonely, happy) {
         /*
             Ökar happiness med 30, 
             ökar hunger och tiredness med 20. 
             Sänker loneliness med 10.
         */
+        console.log("this in object:", this);
+
+        this.tiredness = tired + 20;
+        this.hunger = hungry + 20;
+        this.loneliness = lonely - 10;
+        this.happiness = happy + 30;
 
     }
-    eat() {
+    eat(tired, hungry) {
         /*
             Sänker hunger med 60, 
             ökar tiredness med 10.
         */
+        console.log("this in object:", this);
 
+        this.tiredness = tired + 10;
+        this.hunger = hungry - 60;
     }
 }
 
@@ -73,18 +82,26 @@ function renderPet(pet){
         </div>
     `
 
-    // Nap method
+    // All methods
 
-    let napBtn = document.querySelector("#eat")
-    console.log(napBtn);
+    let napBtn = document.querySelector("#sleep")
+    let eatBtn = document.querySelector("#eat")
+    let playBtn = document.querySelector("#play")
 
     napBtn.addEventListener("click", () => {
         console.log("in nap-event");
-
         console.log("this in event listener: ", this);
-
         pet.nap(pet.tiredness, pet.hunger, pet.loneliness ,pet.happiness)
+    })
 
+    eatBtn.addEventListener("click", () => {
+        console.log("in eat-event");
+        pet.eat(pet.tiredness, pet.hunger, pet.loneliness ,pet.happiness)
+    })
+
+    playBtn.addEventListener("click", () => {
+        console.log("in play-event");
+        pet.play(pet.tiredness, pet.hunger)
     })
     
 }
