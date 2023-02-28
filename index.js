@@ -10,23 +10,23 @@ class Tamagotchi {
         this.loneliness = 50;
         this.happiness = 50;
     }
-    nap(tired, hungry, lonely, happy) {
-        this.tiredness = tired + 30;
-        this.hunger = hungry - 15;
-        this.loneliness = lonely - 20;
-        this.happiness = happy - 25;
+    nap() {
+        this.tiredness += 30;
+        this.hunger -= 15;
+        this.loneliness -= 20;
+        this.happiness -= 25;
         renderPet(this);
     }
-    play(tired, hungry, lonely, happy) {
-        this.tiredness = tired - 20;
-        this.hunger = hungry - 20;
-        this.loneliness = lonely + 20;
-        this.happiness = happy + 30;
+    play() {
+        this.tiredness -= 20;
+        this.hunger -= 20;
+        this.loneliness += 20;
+        this.happiness += 30;
         renderPet(this);
     }
-    eat(tired, hungry) {
-        this.tiredness = tired - 15;
-        this.hunger = hungry + 30;
+    eat( ) {
+        this.tiredness -= 15;
+        this.hunger += 30;
         renderPet(this);
     }
 }
