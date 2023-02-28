@@ -2,6 +2,7 @@
     outline: 1px solid pink;
 }
 
+
 body * {
     font-family: $body;
 }
@@ -12,8 +13,49 @@ h1, h2, h3, h4 {
 
 .pet-row {
     @include flex;
-    
+    gap: 5%;
 }
 
 /* Progress bar */
+.score {
+    @include flex(column);
 
+    progress:not([value]) {
+        border-radius: 50px; 
+    }
+    progress[value] {
+        /* Reset the default appearance */
+        -webkit-appearance: none;
+        appearance: none;
+        border: none;
+        width: 200px; 
+        height: 20px;
+        border-radius: 50px; 
+    }
+    progress[value]::-webkit-progress-value {
+        background-image:
+            -webkit-linear-gradient(top, 
+                                    rgba(255, 255, 255, 0), 
+                                    rgba(244, 239, 239, 0)),
+            -webkit-linear-gradient(left, $purple, $pale-purple);
+        border-radius: 50px; 
+        background-size: 35px 20px, 100% 100%, 100% 100%;
+    }
+    progress::-webkit-progress-bar {
+        background-color: rgb(255, 255, 255); 
+    }
+
+}
+
+.dead {
+    background-color: red;
+    input, input:active, input:focus, select, button {
+        -webkit-appearance: none;
+        appearance: none;       
+         background-color: red;
+
+    }
+    progress::-webkit-progress-bar {
+        background-color: red; 
+    }
+}

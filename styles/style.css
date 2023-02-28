@@ -19,7 +19,49 @@ h1, h2, h3, h4 {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  flex-wrap: no-wrap;
+  flex-wrap: wrap;
+  gap: 5%;
 }
 
-/* Progress bar *//*# sourceMappingURL=style.css.map */
+/* Progress bar */
+.score {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.score progress:not([value]) {
+  border-radius: 50px;
+}
+.score progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  border: none;
+  width: 200px;
+  height: 20px;
+  border-radius: 50px;
+}
+.score progress[value]::-webkit-progress-value {
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, hsl(226deg, 89%, 73%), hsl(0deg, 0%, 89%));
+  border-radius: 50px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+.score progress::-webkit-progress-bar {
+  background-color: rgb(255, 255, 255);
+}
+
+.dead {
+  background-color: red;
+}
+.dead input, .dead input:active, .dead input:focus, .dead select, .dead button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  background-color: red;
+}
+.dead progress::-webkit-progress-bar {
+  background-color: red;
+}/*# sourceMappingURL=style.css.map */

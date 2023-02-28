@@ -47,6 +47,14 @@ function renderPet(pet){
     console.log(container);
     console.log(pet);
 
+    //todo! if check för alla  poäng 
+    //! kasta på dead klassen på hela bodyn när den dör
+
+    if(pet.tiredness <= 0) {
+        console.log(document);
+        document.body.classList.add("dead")
+    }
+
     container.innerHTML = `
         <div class="score">
             <label for="sleepProgress">Tiredness:
@@ -77,8 +85,6 @@ function renderPet(pet){
             <p>${action ? action : ""}</p>
         </div>
     `
-    // let actionPara = document.createElement("p")
-    // console.log(actionPara);
     
     // All methods
     let napBtn = document.querySelector("#sleep")
@@ -127,13 +133,15 @@ tForm.addEventListener("submit", (e) => {
 function renderPetArr(arr) {
 
     let petDisplay = document.querySelector('#petContainer');
-    petDisplay.innerHTML = ""
-    let h3 = document.createElement("h3")
-    h3.innerText = "All of my friends"
-    petDisplay.appendChild(h3)
+    petDisplay.innerHTML = `
+        <h3>All of my friends</h3>
+        <div class="pet-row"></div>
+    `
+    let petRow = document.querySelector('.pet-row');
+
 
     arr.forEach(pet => {
-        petDisplay.innerHTML += `
+        petRow.innerHTML += `
             <div class="pet-container">
                 <h4>${pet.name}</h4>
                 <p>${pet.animalType}</p>
