@@ -43,6 +43,20 @@ function renderPet(pet){
     console.log(pet);
 
     container.innerHTML = `
+        <div class="score">
+            <p>Tiredness:
+                <span id="sleep-score">${pet.tiredness}</span>
+            </p>
+            <p>Hunger:
+                <span id="hunger-score">${pet.hunger}</span>
+            </p>
+            <p>Loneliness:
+                <span id="lonely-score">${pet.loneliness}</span>
+            </p>
+            <p>Happiness:
+                <span id="happy-score">${pet.happiness}</span>
+            </p>
+        </div>
         <div class="pet-container">
             <h3>${pet.name}</h3>
             <p>${pet.animalType}</p>
