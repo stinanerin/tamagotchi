@@ -1,7 +1,25 @@
+@font-face {
+  font-family: SelectMono;
+  src: url(../fonts/SelectMono-Italic.woff);
+}
 * {
   outline: 1px solid pink;
 }
 
 body * {
   font-family: monospace;
-}/*# sourceMappingURL=style.css.map */
+}
+
+h1, h2, h3, h4 {
+  font-family: SelectMono, serif;
+}
+
+.pet-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: no-wrap;
+}
+
+/* Progress bar *//*# sourceMappingURL=style.css.map */

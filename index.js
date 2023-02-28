@@ -18,7 +18,6 @@ class Tamagotchi {
         this.loneliness -= 20;
         this.happiness -= 25;
         action = `You took a nap with ${this.name}`;
-
         renderPet(this);
     }
     play() {
@@ -65,7 +64,6 @@ function renderPet(pet){
             <label for="happyProgress">Happiness:
                 <span id="happy-score">${pet.happiness > 100 ? pet.happiness = 100 : pet.happiness < 0 ? pet.happiness = 0 : pet.happiness}</span>
                 <progress id="happyProgress" value="${pet.happiness}" max="100"></progress>
-
             </label>
         </div>
         <div class="pet-container">
