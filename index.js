@@ -1,5 +1,6 @@
 console.log("tamagotchi");
 
+// -------------------------------------------- Tamagotchi prototype --------------------------------------------
 class Tamagotchi {
     constructor(name, animalType ) {
         this.name = name;
@@ -34,9 +35,8 @@ class Tamagotchi {
     }
 }
 
-
-
-function renderTam(pet){
+// -------------------------------------------- Render user pet --------------------------------------------
+function renderPet(pet){
     // Hämta div
     let container = document.querySelector("#gameContainer")
     console.log(container);
@@ -48,17 +48,16 @@ function renderTam(pet){
             <p>${pet.animalType}</p>
         </div>
     `
-
-
 }
 
+// -------------------------------------------- FORM: User input for creating Pet --------------------------------------------
 
 let tForm = document.querySelector('#createTamagotchi');
 
 tForm.addEventListener("submit", (e) => {
     e.preventDefault()
 
-    // Skapa en ny instans av Tamagotchi-prototypen utifrån användarens input
+    // Create a new instance of the Tamagotchi prototype from user input
     let tamName = document.querySelector('#tName').value;
     console.log(tamName);
 
@@ -68,8 +67,7 @@ tForm.addEventListener("submit", (e) => {
     let newPet = new Tamagotchi(tamName, tamType)
     console.log(newPet);
     
-    // Visa ut användarens skapade Tamagotchi i DOM:en
-    renderTam(newPet)
+    renderPet(newPet)
     
 })
 
