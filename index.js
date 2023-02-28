@@ -11,46 +11,23 @@ class Tamagotchi {
         this.happiness = 50;
     }
     nap(tired, hungry, lonely, happy) {
-        /*  
-            Sänker tiredness med 40,
-            sänker happiness med 10, 
-            ökar hunger och loneliness med 10.
-        */
-        console.log("this in object:", this);
-
         this.tiredness = tired - 40;
         this.hunger = hungry - 10;
         this.loneliness = lonely + 10;
         this.happiness = happy + 10;
         renderPet(this);
-
     }
     play(tired, hungry, lonely, happy) {
-        /*
-            Ökar happiness med 30, 
-            ökar hunger och tiredness med 20. 
-            Sänker loneliness med 10.
-        */
-        console.log("this in object:", this);
-
         this.tiredness = tired + 20;
         this.hunger = hungry + 20;
-        this.loneliness = lonely + 10;
-        this.happiness = happy + 10;
+        this.loneliness = lonely - 10;
+        this.happiness = happy + 30;
         renderPet(this);
-
     }
     eat(tired, hungry) {
-        /*
-            Sänker hunger med 60, 
-            ökar tiredness med 10.
-        */
-        console.log("this in object:", this);
-
         this.tiredness = tired + 10;
         this.hunger = hungry - 60;
         renderPet(this);
-
     }
 }
 
@@ -88,7 +65,6 @@ function renderPet(pet){
     `
 
     // All methods
-
     let napBtn = document.querySelector("#sleep")
     let eatBtn = document.querySelector("#eat")
     let playBtn = document.querySelector("#play")
@@ -108,7 +84,7 @@ function renderPet(pet){
         console.log("in play-event");
         pet.play(pet.tiredness, pet.hunger, pet.loneliness ,pet.happiness)
     })
-    
+
 }
 
 // -------------------------------------------- FORM: User input for creating Pet --------------------------------------------
