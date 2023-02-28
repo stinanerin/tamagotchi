@@ -40,21 +40,21 @@ function renderPet(pet){
 
     container.innerHTML = `
         <div class="score">
-            <p>Tiredness:
+            <h4>Tiredness:
                 <span id="sleep-score">${pet.tiredness}</span>
-            </p>
-            <p>Hunger:
+            </h4>
+            <h4>Hunger:
                 <span id="hunger-score">${pet.hunger}</span>
-            </p>
-            <p>Loneliness:
+            </h4>
+            <h4>Loneliness:
                 <span id="lonely-score">${pet.loneliness}</span>
-            </p>
-            <p>Happiness:
+            </h4>
+            <h4>Happiness:
                 <span id="happy-score">${pet.happiness}</span>
-            </p>
+            </h4>
         </div>
         <div class="pet-container">
-            <h3>${pet.name}</h3>
+            <h4>${pet.name}</h4>
             <p>${pet.animalType}</p>
         </div>
         <div class="game-buttons">
@@ -91,6 +91,8 @@ function renderPet(pet){
 
 let tForm = document.querySelector('#createTamagotchi');
 
+let petArr = [];
+
 tForm.addEventListener("submit", (e) => {
     e.preventDefault()
 
@@ -105,6 +107,33 @@ tForm.addEventListener("submit", (e) => {
     console.log(newPet);
     
     renderPet(newPet)
+
+    petArr.push(newPet)
+    console.log(petArr);
+
+    renderPetArr(petArr)
     
 })
+
+// -------------------------------------------- Render all the user created pets --------------------------------------------
+
+function renderPetArr(arr) {
+
+    let petDisplay = document.querySelector('#petContainer');
+    petDisplay.innerHTML = ""
+    let h3 = document.createElement("h3")
+    h3.innerText = "All of my friends"
+    petDisplay.appendChild(h3)
+
+    arr.forEach(pet => {
+        petDisplay.innerHTML += `
+            <div class="pet-container">
+                <h4>${pet.name}</h4>
+                <p>${pet.animalType}</p>
+            </div>
+        `
+    });
+
+
+}
 
