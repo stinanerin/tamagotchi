@@ -22,6 +22,8 @@ class Tamagotchi {
         this.hunger = hungry - 10;
         this.loneliness = lonely + 10;
         this.happiness = happy + 10;
+        renderPet(this);
+
     }
     play(tired, hungry, lonely, happy) {
         /*
@@ -33,8 +35,9 @@ class Tamagotchi {
 
         this.tiredness = tired + 20;
         this.hunger = hungry + 20;
-        this.loneliness = lonely - 10;
-        this.happiness = happy + 30;
+        this.loneliness = lonely + 10;
+        this.happiness = happy + 10;
+        renderPet(this);
 
     }
     eat(tired, hungry) {
@@ -46,6 +49,8 @@ class Tamagotchi {
 
         this.tiredness = tired + 10;
         this.hunger = hungry - 60;
+        renderPet(this);
+
     }
 }
 
@@ -96,12 +101,12 @@ function renderPet(pet){
 
     eatBtn.addEventListener("click", () => {
         console.log("in eat-event");
-        pet.eat(pet.tiredness, pet.hunger, pet.loneliness ,pet.happiness)
+        pet.eat(pet.tiredness, pet.hunger)
     })
 
     playBtn.addEventListener("click", () => {
         console.log("in play-event");
-        pet.play(pet.tiredness, pet.hunger)
+        pet.play(pet.tiredness, pet.hunger, pet.loneliness ,pet.happiness)
     })
     
 }
