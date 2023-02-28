@@ -61,6 +61,11 @@ function renderPet(pet){
             <h3>${pet.name}</h3>
             <p>${pet.animalType}</p>
         </div>
+        <div class="game-buttons">
+            <button id="eat"><i class="fa-solid fa-cookie-bite"></i></button>
+            <button id="play"><i class="fa-solid fa-otter"></i></button>
+            <button id="sleep"><i class="fa-solid fa-moon"></i></button>
+        </div>
     `
 }
 
