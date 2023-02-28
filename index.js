@@ -3,7 +3,7 @@ console.log("tamagotchi");
 class Tamagotchi {
     constructor(name, animalType ) {
         this.name = name;
-        this.animaType = animalType;
+        this.animalType = animalType;
         this.tiredness = 50;
         this.hunger = 50;
         this.loneliness = 50;
@@ -34,18 +34,42 @@ class Tamagotchi {
     }
 }
 
+
+
+function renderTam(pet){
+    // Hämta div
+    let container = document.querySelector("#gameContainer")
+    console.log(container);
+    console.log(pet);
+
+    container.innerHTML = `
+        <div class="pet-container">
+            <h3>${pet.name}</h3>
+            <p>${pet.animalType}</p>
+        </div>
+    `
+
+
+}
+
+
 let tForm = document.querySelector('#createTamagotchi');
-console.log(tForm);
 
 tForm.addEventListener("submit", (e) => {
     e.preventDefault()
-    
+
+    // Skapa en ny instans av Tamagotchi-prototypen utifrån användarens input
     let tamName = document.querySelector('#tName').value;
     console.log(tamName);
 
     let tamType = document.querySelector("#tType").value;
     console.log(tamType);
+
+    let newPet = new Tamagotchi(tamName, tamType)
+    console.log(newPet);
     
+    // Visa ut användarens skapade Tamagotchi i DOM:en
+    renderTam(newPet)
     
 })
 
