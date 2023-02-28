@@ -1,5 +1,7 @@
 console.log("tamagotchi");
 
+let action;
+
 // -------------------------------------------- Tamagotchi prototype --------------------------------------------
 class Tamagotchi {
     constructor(name, animalType ) {
@@ -15,18 +17,26 @@ class Tamagotchi {
         this.hunger -= 15;
         this.loneliness -= 20;
         this.happiness -= 25;
+        action = `You took a nap with ${this.name}`;
+
         renderPet(this);
     }
     play() {
-        this.tiredness -= 20;
-        this.hunger -= 20;
-        this.loneliness += 20;
-        this.happiness += 30;
+        if (this.tiredness > 30) {
+            this.tiredness -= 20;
+            this.hunger -= 20;
+            this.loneliness += 20;
+            this.happiness += 30;
+            action = `You played with ${this.name}`;
+        } else {
+            action = `No bueno, ${this.name} is too tired to play`;
+        }
         renderPet(this);
     }
     eat( ) {
         this.tiredness -= 15;
         this.hunger += 30;
+        action= `You ate with ${this.name}`;
         renderPet(this);
     }
 }
@@ -66,10 +76,11 @@ function renderPet(pet){
             <button id="eat"><i class="fa-solid fa-cookie-bite"></i></button>
             <button id="play"><i class="fa-solid fa-otter"></i></button>
             <button id="sleep"><i class="fa-solid fa-moon"></i></button>
+            <p>${action ? action : ""}</p>
         </div>
     `
-    let actionPara = document.createElement("p")
-    console.log(actionPara);
+    // let actionPara = document.createElement("p")
+    // console.log(actionPara);
     
     // All methods
     let napBtn = document.querySelector("#sleep")
@@ -78,25 +89,15 @@ function renderPet(pet){
 
     napBtn.addEventListener("click", () => {
         console.log("this in event listener: ", this);
-        pet.nap(pet.tiredness, pet.hunger, pet.loneliness ,pet.happiness)
-        actionPara.innerText = `You took a nap with ${pet.name}`;
-        container.append(actionPara)
+        pet.nap()
     })
 
     eatBtn.addEventListener("click", () => {
-        pet.eat(pet.tiredness, pet.hunger)
-        actionPara.innerHTML = `You ate with ${pet.name}`;
-        container.append(actionPara)
+        pet.eat()
     })
 
     playBtn.addEventListener("click", () => {
-        if (pet.tiredness > 30) {
-            pet.play(pet.tiredness, pet.hunger, pet.loneliness ,pet.happiness)
-            actionPara.innerHTML = `You played with ${pet.name}`;
-        } else {
-            actionPara.innerHTML = `No bueno, ${pet.name} is too tired to play`;
-        }
-        container.append(actionPara)
+        pet.play()
     })
 
 }
