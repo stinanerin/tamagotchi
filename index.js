@@ -11,22 +11,22 @@ class Tamagotchi {
         this.happiness = 50;
     }
     nap(tired, hungry, lonely, happy) {
-        this.tiredness = tired - 40;
-        this.hunger = hungry - 10;
-        this.loneliness = lonely + 10;
-        this.happiness = happy + 10;
+        this.tiredness = tired + 30;
+        this.hunger = hungry - 15;
+        this.loneliness = lonely - 20;
+        this.happiness = happy - 25;
         renderPet(this);
     }
     play(tired, hungry, lonely, happy) {
-        this.tiredness = tired + 20;
-        this.hunger = hungry + 20;
-        this.loneliness = lonely - 10;
+        this.tiredness = tired - 20;
+        this.hunger = hungry - 20;
+        this.loneliness = lonely + 20;
         this.happiness = happy + 30;
         renderPet(this);
     }
     eat(tired, hungry) {
-        this.tiredness = tired + 10;
-        this.hunger = hungry - 60;
+        this.tiredness = tired - 15;
+        this.hunger = hungry + 30;
         renderPet(this);
     }
 }
@@ -40,18 +40,23 @@ function renderPet(pet){
 
     container.innerHTML = `
         <div class="score">
-            <h4>Tiredness:
-                <span id="sleep-score">${pet.tiredness}</span>
-            </h4>
-            <h4>Hunger:
-                <span id="hunger-score">${pet.hunger}</span>
-            </h4>
-            <h4>Loneliness:
-                <span id="lonely-score">${pet.loneliness}</span>
-            </h4>
-            <h4>Happiness:
-                <span id="happy-score">${pet.happiness}</span>
-            </h4>
+            <label for="sleepProgress">Tiredness:
+                <span id="sleep-score">${pet.tiredness > 100 ? pet.tiredness = 100 : pet.tiredness < 0 ? pet.tiredness = 0: pet.tiredness}</span>
+                <progress id="sleepProgress" value="${pet.tiredness}" max="100"></progress>
+            </label>
+            <label for="hungerProgress">Hunger:
+                <span id="hunger-score">${pet.hunger > 100 ? pet.hunger = 100 : pet.hunger < 0 ? pet.hunger = 0 : pet.hunger}</span>
+                <progress id="hungerProgress" value="${pet.hunger}" max="100"></progress>
+            </label>
+            <label for="lonelyProgress">Loneliness:
+                <span id="lonely-score">${pet.loneliness > 100 ? pet.loneliness = 100 : pet.loneliness < 0 ? pet.loneliness = 0 : pet.loneliness}</span>
+                <progress id="lonelyProgress" value="${pet.loneliness}" max="100"></progress>
+            </label>
+            <label for="happyProgress">Happiness:
+                <span id="happy-score">${pet.happiness > 100 ? pet.happiness = 100 : pet.happiness < 0 ? pet.happiness = 0 : pet.happiness}</span>
+                <progress id="happyProgress" value="${pet.happiness}" max="100"></progress>
+
+            </label>
         </div>
         <div class="pet-container">
             <h4>${pet.name}</h4>
@@ -63,26 +68,35 @@ function renderPet(pet){
             <button id="sleep"><i class="fa-solid fa-moon"></i></button>
         </div>
     `
-
+    let actionPara = document.createElement("p")
+    console.log(actionPara);
+    
     // All methods
     let napBtn = document.querySelector("#sleep")
     let eatBtn = document.querySelector("#eat")
     let playBtn = document.querySelector("#play")
 
     napBtn.addEventListener("click", () => {
-        console.log("in nap-event");
         console.log("this in event listener: ", this);
         pet.nap(pet.tiredness, pet.hunger, pet.loneliness ,pet.happiness)
+        actionPara.innerText = `You took a nap with ${pet.name}`;
+        container.append(actionPara)
     })
 
     eatBtn.addEventListener("click", () => {
-        console.log("in eat-event");
         pet.eat(pet.tiredness, pet.hunger)
+        actionPara.innerHTML = `You ate with ${pet.name}`;
+        container.append(actionPara)
     })
 
     playBtn.addEventListener("click", () => {
-        console.log("in play-event");
-        pet.play(pet.tiredness, pet.hunger, pet.loneliness ,pet.happiness)
+        if (pet.tiredness > 30) {
+            pet.play(pet.tiredness, pet.hunger, pet.loneliness ,pet.happiness)
+            actionPara.innerHTML = `You played with ${pet.name}`;
+        } else {
+            actionPara.innerHTML = `No bueno, ${pet.name} is too tired to play`;
+        }
+        container.append(actionPara)
     })
 
 }
@@ -98,13 +112,8 @@ tForm.addEventListener("submit", (e) => {
 
     // Create a new instance of the Tamagotchi prototype from user input
     let tamName = document.querySelector('#tName').value;
-    console.log(tamName);
-
     let tamType = document.querySelector("#tType").value;
-    console.log(tamType);
-
     let newPet = new Tamagotchi(tamName, tamType)
-    console.log(newPet);
     
     renderPet(newPet)
 
@@ -112,7 +121,6 @@ tForm.addEventListener("submit", (e) => {
     console.log(petArr);
 
     renderPetArr(petArr)
-    
 })
 
 // -------------------------------------------- Render all the user created pets --------------------------------------------
@@ -133,7 +141,5 @@ function renderPetArr(arr) {
             </div>
         `
     });
-
-
 }
 
