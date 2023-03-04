@@ -2,14 +2,59 @@
     outline: 1px solid pink;
 }
 
+/* Set up */
+*, *:before, *:after {
+    box-sizing: border-box;
+}
 
-body * {
+body, h1, h2, h3, h4, p {
+    margin: 0;
+}
+
+body, button, input, select  {
     font-family: $body;
+    font-size: 1rem;
+    line-height: 1.5; 
+    color: $p-black;
 }
 
 h1, h2, h3, h4 {
     font-family: $heading-primary ;
+    line-height: 1;
+    font-weight: 900;
+    color: $p-black;
+  
 }
+h1, h2, h3, h4, p {
+    /* Får utrymme av sin egen font-storlek */
+    margin-bottom: 1em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ----------------------------- */
+header {
+    padding: 3rem 0;
+    h2 {
+        font-size: 1rem;
+    }
+}
+
+ul {
+    padding-left: 0;
+    li {
+        list-style: none;
+        @include flex (column, center, center);
+
+    }
+}
+
 
 .pet-row {
     @include flex;
@@ -19,6 +64,9 @@ h1, h2, h3, h4 {
 /* Progress bar */
 .score {
     @include flex(column);
+    label {
+        font-weight: 900;
+    }
 
     progress:not([value]) {
         border-radius: 50px; 
@@ -57,5 +105,12 @@ h1, h2, h3, h4 {
     }
     progress::-webkit-progress-bar {
         background-color: red; 
+    }
+    progress[value]::-webkit-progress-value {
+        background-image:
+            -webkit-linear-gradient(top, 
+                                    rgba(255, 255, 255, 0), 
+                                    rgba(244, 239, 239, 0)),
+            -webkit-linear-gradient(left, rgb(59, 0, 0), rgb(247, 0, 95));
     }
 }

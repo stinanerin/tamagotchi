@@ -18,34 +18,42 @@
     
 </head>
 <body>
-    <h1>Tamagotchi</h1>
-    <h2>Don't kill me pls</h2>
+    <header>
+        <h1 class="text-center">Tamagotchi</h1>
+        <h2 class="text-center">Don't kill me pls</h2>
+    </header>
 
-    <div id="petContainer" >
+    <main>
+
+        <div id="petContainer" >
         
         
         
-    </div>
+        </div>
+
+        <form id="createTamagotchi">
+            <label for="tName">What is my name?
+                <input id="tName" type="text" placeholder="Name" required />
+            </label>
+            <select id="tType" required>
+                <option value="" disabled selected hidden>What am I like</option>
+                <option >(๑-﹏-๑)</option>
+                <option >(๑•̀ ᴖ •́)૭</option>
+                <option >(˵ •̀ ᴗ - ˵ ) ✧)</option>
+            </select>
+        
+            <button type="submit" id="createBtn">Let´s play</button>
+
+        </form>
 
 
-    <form id="createTamagotchi">
-        <label for="tName">What is my name?
-            <input id="tName" type="text" placeholder="Name" required />
-        </label>
-        <select id="tType" required>
-            <option value="" disabled selected hidden>What am I like</option>
-            <option >(๑-﹏-๑)</option>
-            <option >(๑•̀ ᴖ •́)૭</option>
-            <option >(˵ •̀ ᴗ - ˵ ) ✧)</option>
-        </select>
-    
-        <button type="submit" id="createBtn">Let´s play</button>
+        <div id="gameContainer">
 
-    </form>
 
-    <div id="gameContainer">
-                        
-    </div>
 
+        </div>
+
+
+    </main>
 </body>
 </html>

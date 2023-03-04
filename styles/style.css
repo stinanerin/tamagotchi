@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: SelectMono;
   src: url(../fonts/SelectMono-Italic.woff);
@@ -6,12 +7,60 @@
   outline: 1px solid pink;
 }
 
-body * {
+/* Set up */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+body, button, input, select {
   font-family: monospace;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #000;
 }
 
 h1, h2, h3, h4 {
   font-family: SelectMono, serif;
+  line-height: 1;
+  font-weight: 900;
+  color: #000;
+}
+
+h1, h2, h3, h4, p {
+  /* Får utrymme av sin egen font-storlek */
+  margin-bottom: 1em;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ----------------------------- */
+header {
+  padding: 3rem 0;
+}
+header h2 {
+  font-size: 1rem;
+}
+
+ul {
+  padding-left: 0;
+}
+ul li {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .pet-row {
@@ -30,6 +79,9 @@ h1, h2, h3, h4 {
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
+}
+.score label {
+  font-weight: 900;
 }
 .score progress:not([value]) {
   border-radius: 50px;
@@ -64,4 +116,7 @@ h1, h2, h3, h4 {
 }
 .dead progress::-webkit-progress-bar {
   background-color: red;
+}
+.dead progress[value]::-webkit-progress-value {
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, rgb(59, 0, 0), rgb(247, 0, 95));
 }/*# sourceMappingURL=style.css.map */
