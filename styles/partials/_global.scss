@@ -27,10 +27,10 @@ button, input, select {
 
     &:hover {
         background-image:
-        -webkit-linear-gradient(top, 
+        -webkit-linear-gradient(left, 
                                 rgba(255, 255, 255, 0), 
                                 rgba(244, 239, 239, 0)),
-        -webkit-linear-gradient(left, $purple, $blue);
+        -webkit-linear-gradient(top, $purple, $blue);
         border-radius: 50px; 
         background-size: 35px 20px, 100% 100%, 100% 100%;  
         border-radius: 0.5rem;
@@ -123,6 +123,8 @@ body{
     
     label {
         font-weight: 900;
+        width: 100%;
+        @include flex(row, space-between)
     }
     progress:not([value]) {
         border-radius: 100; 
@@ -144,33 +146,45 @@ body{
             -webkit-linear-gradient(left, $purple, $blue);
         border-radius: 50px; 
         background-size: 35px 20px, 100% 100%, 100% 100%;
+
     }
     progress::-webkit-progress-bar {
-        background-color: rgb(255, 255, 255); 
+        background-color: $grey; 
+        border-radius: 50px; 
     }
 
 }
 
 .dead {
     background-color: red;
-    * {
+    *, input::placeholder {
         color: pink;
     }
 
     input, input:active, input:focus, select, button {
         -webkit-appearance: none;
         appearance: none;       
-         background-color: red;
+        background-color: rgb(52, 0, 0); 
 
     }
     progress::-webkit-progress-bar {
-        background-color: red; 
+        background-color: pink; 
+        border-radius: 50px; 
+
     }
     progress[value]::-webkit-progress-value, button:hover, input:hover, select:hover  {
         background-image:
             -webkit-linear-gradient(top, 
                                     rgba(255, 255, 255, 0), 
                                     rgba(244, 239, 239, 0)),
-            -webkit-linear-gradient(left, rgb(59, 0, 0), rgb(247, 0, 95));
-    }
+            -webkit-linear-gradient(left, rgb(52, 0, 0), rgb(247, 0, 95));
+    }   
+    button:hover, input:hover, select:hover {
+        background-image:
+        -webkit-linear-gradient(left, 
+                                    rgba(255, 255, 255, 0), 
+                                    rgba(244, 239, 239, 0)),
+        -webkit-linear-gradient(top, rgb(52, 0, 0), rgb(247, 0, 95));
+    }   
+
 }

@@ -7,13 +7,13 @@ let tForm = document.querySelector('#createTamagotchi');
 
 // -------------------------------------------- Tamagotchi prototype --------------------------------------------
 class Tamagotchi {
-    constructor(name, animalType ) {
+    constructor(name, animalType, tiredness = 50, hunger = 50, loneliness = 50, happiness = 50 ) {
         this.name = name;
         this.animalType = animalType;
-        this.tiredness = 50;
-        this.hunger = 50;
-        this.loneliness = 50;
-        this.happiness = 50;
+        this.tiredness = tiredness;
+        this.hunger = hunger;
+        this.loneliness = loneliness;
+        this.happiness = happiness;
     }
     nap() {
         this.tiredness += 30;
@@ -21,6 +21,7 @@ class Tamagotchi {
         this.loneliness -= 20;
         this.happiness -= 25;
         action = `You took a nap with ${this.name}`;
+        this.checkMinMax()
         this.renderPet();
     }
     play() {
@@ -33,50 +34,44 @@ class Tamagotchi {
         } else {
             action = `No bueno, ${this.name} is too tired to play`;
         }
+        this.checkMinMax()
         this.renderPet();
     }
     eat() {
         this.tiredness -= 15;
         this.hunger += 30;
         action= `You ate with ${this.name}`;
+        this.checkMinMax()
         this.renderPet();
+
     }
-    checkScore(need) {
-        console.log(need);
+    deadCheck(need) {
         if(need <= 0) {
             need = 0;
             document.body.classList.add("dead"); 
             action = `You killed ${this.name}`;
             //todo! renderModal()
-        } else if( need > 100) {
-            need = 100;
         } 
+        this.checkMinMax()
         return need
     }
-    // time(need) {
-    //     console.log("hej1");
-    //     console.log(need);
-
-
-    //     setInterval(() => {
-    //         console.log("hej2");
-    //         console.log(need);
-    //         need -= 5;
-    //         console.log(need);
-
-    //         return need
-
-    //     }, 2000);
-    //     console.log(need);
-    //     return need
-    // }
-
+    checkMinMax() {
+        if (this.tiredness > 100) this.tiredness = 100;
+        if (this.hunger > 100) this.hunger = 100;
+        if (this.happiness > 100) this.happiness = 100;
+        if (this.loneliness > 100) this.loneliness = 100;
+        if (this.tiredness < 0) this.tiredness = 0;
+        if (this.hunger < 0) this.hunger = 0;
+        if (this.happiness < 0) this.happiness = 0;
+        if (this.loneliness < 0) this.loneliness = 0;
+    }
+   
+    
     // -------------------------------------------- Render user pet --------------------------------------------
     renderPet(){
 
         document.body.classList.remove("dead")
-    //  console.log(this.time(this.checkScore(this.tiredness)));
-    //  <progress id="sleepProgress" value="${this.time(this.checkScore(this.tiredness))}" max="100"></progress>
+   
 
         container.innerHTML = `
             <div class="game-wrapper">
@@ -89,21 +84,21 @@ class Tamagotchi {
                 <div class="score-container">
                     <div class="column">
                         <label for="sleepProgress"><p>Tired</p><p>Well rested</p></label>
-                        <progress id="sleepProgress" value="${this.checkScore(this.tiredness)}" max="100"></progress>
+                        <progress id="sleepProgress" value="${this.deadCheck(this.tiredness)}" max="100"></progress>
                     </div>
                     <div class="column">
                         <label for="hungerProgress"><p>Hungry</p><p>Full</p></label>
-                        <progress id="hungerProgress" value="${this.checkScore(this.hunger)}" max="100"></progress>
+                        <progress id="hungerProgress" value="${this.deadCheck(this.hunger)}" max="100"></progress>
                     </div>
                     <div class="column">
                         <label for="lonelyProgress"><p>Lonely</p><p>Loved</p>
                         </label>
-                        <progress id="lonelyProgress" value="${this.checkScore(this.loneliness)}" max="100"></progress>
+                        <progress id="lonelyProgress" value="${this.deadCheck(this.loneliness)}" max="100"></progress>
                     </div>
                     <div class="column">
                         <label for="happyProgress"><p>Unhappy</p><p>Happy</p>
                         </label>
-                        <progress id="happyProgress" value="${this.checkScore(this.happiness)}" max="100"></progress>
+                        <progress id="happyProgress" value="${this.deadCheck(this.happiness)}" max="100"></progress>
                     </div>
                 </div>
             </div>
@@ -135,11 +130,8 @@ tForm.addEventListener("submit", (e) => {
     let tamName = document.querySelector('#tName').value;
     let tamType = document.querySelector("#tType").value;
     let newPet = new Tamagotchi(tamName, tamType)
-    console.log(newPet);
     newPet.renderPet()
     petArr.push(newPet)
-    // console.log(petArr);
-
     renderPetArr(petArr)
 })
 
@@ -162,9 +154,7 @@ function renderPetArr(arr) {
             </li>
         `
     });
-    let usersPets = document.querySelectorAll(".pet-wrapper")
-
-    usersPets.forEach((item) => {
+    document.querySelectorAll(".pet-wrapper").forEach((item) => {
         item.addEventListener("click", () => {
             const findPet = pet => pet.name === item.dataset.name;
             arr.find(findPet).renderPet()
@@ -173,8 +163,8 @@ function renderPetArr(arr) {
 }
 
 //! Test för styling
-// let bert = new Tamagotchi("Bert", "(˵ •̀ ᴗ - ˵ ) ✧)");
-// bert.renderPet()
+let bert = new Tamagotchi("Bert", "(˵ •̀ ᴗ - ˵ ) ✧)");
+bert.renderPet()
 
-// petArr.push(bert);
-// renderPetArr(petArr)
+petArr.push(bert);
+renderPetArr(petArr)

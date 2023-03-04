@@ -27,7 +27,7 @@ button, input, select {
   height: 3rem;
 }
 button:hover, input:hover, select:hover {
-  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, hsl(226deg, 89%, 73%), hsl(186deg, 35%, 83%));
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(top, hsl(226deg, 89%, 73%), hsl(186deg, 35%, 83%));
   border-radius: 50px;
   background-size: 35px 20px, 100% 100%, 100% 100%;
   border-radius: 0.5rem;
@@ -150,6 +150,12 @@ body .form-wrapper {
 }
 .score-container label {
   font-weight: 900;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 .score-container progress:not([value]) {
   border-radius: 100;
@@ -170,24 +176,35 @@ body .form-wrapper {
   background-size: 35px 20px, 100% 100%, 100% 100%;
 }
 .score-container progress::-webkit-progress-bar {
-  background-color: rgb(255, 255, 255);
+  background-color: hsl(0deg, 0%, 89%);
+  border-radius: 50px;
 }
 
 .dead {
   background-color: red;
 }
-.dead * {
+.dead input::-moz-placeholder {
+  color: pink;
+}
+.dead input:-ms-input-placeholder {
+  color: pink;
+}
+.dead *, .dead input::placeholder {
   color: pink;
 }
 .dead input, .dead input:active, .dead input:focus, .dead select, .dead button {
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
-  background-color: red;
+  background-color: rgb(52, 0, 0);
 }
 .dead progress::-webkit-progress-bar {
-  background-color: red;
+  background-color: pink;
+  border-radius: 50px;
 }
 .dead progress[value]::-webkit-progress-value, .dead button:hover, .dead input:hover, .dead select:hover {
-  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, rgb(59, 0, 0), rgb(247, 0, 95));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, rgb(52, 0, 0), rgb(247, 0, 95));
+}
+.dead button:hover, .dead input:hover, .dead select:hover {
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(top, rgb(52, 0, 0), rgb(247, 0, 95));
 }/*# sourceMappingURL=style.css.map */
