@@ -2,10 +2,6 @@
   font-family: SelectMono;
   src: url(../fonts/SelectMono-Italic.woff);
 }
-* {
-  outline: 1px solid pink;
-}
-
 /* Set up */
 *, *:before, *:after {
   box-sizing: border-box;
