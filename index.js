@@ -70,6 +70,7 @@ class Tamagotchi {
     //     console.log(need);
     //     return need
     // }
+
     // -------------------------------------------- Render user pet --------------------------------------------
     renderPet(){
 
@@ -134,7 +135,7 @@ tForm.addEventListener("submit", (e) => {
     let tamName = document.querySelector('#tName').value;
     let tamType = document.querySelector("#tType").value;
     let newPet = new Tamagotchi(tamName, tamType)
-    
+    console.log(newPet);
     newPet.renderPet()
     petArr.push(newPet)
     // console.log(petArr);
@@ -155,12 +156,20 @@ function renderPetArr(arr) {
 
     arr.forEach(pet => {
         petRow.innerHTML += `
-            <li class="pet-container">
-                <h4 >${pet.name}</h4>
+            <li class="pet-wrapper" data-name="${pet.name}" data-icon="${pet.animalType}">
+                <h4>${pet.name}</h4>
                 <p>${pet.animalType}</p>
             </li>
         `
     });
+    let usersPets = document.querySelectorAll(".pet-wrapper")
+
+    usersPets.forEach((item) => {
+        item.addEventListener("click", () => {
+            const findPet = pet => pet.name === item.dataset.name;
+            arr.find(findPet).renderPet()
+        })
+    })
 }
 
 //! Test för styling
@@ -169,4 +178,3 @@ function renderPetArr(arr) {
 
 // petArr.push(bert);
 // renderPetArr(petArr)
-   
