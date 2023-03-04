@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: SelectMono;
   src: url(../fonts/SelectMono-Italic.woff);
@@ -21,6 +20,25 @@ body, button, input, select {
   font-size: 1rem;
   line-height: 1.5;
   color: #000;
+  background-color: transparent;
+}
+
+button, input, select {
+  padding: 0.5rem 1rem;
+  border: none;
+  transition: 0.5s;
+  border-radius: 2rem;
+  height: 3rem;
+}
+button:hover, input:hover, select:hover {
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, hsl(226deg, 89%, 73%), hsl(186deg, 35%, 83%));
+  border-radius: 50px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+  border-radius: 0.5rem;
+}
+
+input {
+  border-bottom: 1px solid #000;
 }
 
 h1, h2, h3, h4 {
@@ -28,10 +46,6 @@ h1, h2, h3, h4 {
   line-height: 1;
   font-weight: 900;
   color: #000;
-}
-
-h1, h2, h3, h4, p {
-  /* Får utrymme av sin egen font-storlek */
   margin-bottom: 1em;
 }
 
@@ -39,11 +53,19 @@ h1, h2, h3, h4, p {
   text-align: center;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
 .hidden {
   display: none;
 }
 
-/* ----------------------------- */
+/* HEADER */
 header {
   padding: 3rem 0;
 }
@@ -51,10 +73,25 @@ header h2 {
   font-size: 1rem;
 }
 
-ul {
+/* MAIN */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* UL */
+}
+body .pet-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5%;
   padding-left: 0;
 }
-ul li {
+body .pet-row li {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -62,31 +99,66 @@ ul li {
   align-items: center;
   flex-wrap: wrap;
 }
-
-.pet-row {
+body .game-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 5%;
+  gap: 8%;
+}
+body .game-wrapper .game-pet .pet-container {
+  font-size: 1.8rem;
+}
+@media (width >= 440px) {
+  body .game-wrapper .game-pet .pet-container {
+    color: pink;
+    font-size: 3rem;
+  }
+}
+body .game-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+body .game-buttons i {
+  font-size: 2rem;
+}
+body .form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+@media (width >= 440px) {
+  body .form-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+    flex-wrap: wrap;
+  }
 }
 
 /* Progress bar */
-.score {
+.score-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
 }
-.score label {
+.score-container label {
   font-weight: 900;
 }
-.score progress:not([value]) {
-  border-radius: 50px;
+.score-container progress:not([value]) {
+  border-radius: 100;
 }
-.score progress[value] {
+.score-container progress[value] {
   /* Reset the default appearance */
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -96,17 +168,20 @@ ul li {
   height: 20px;
   border-radius: 50px;
 }
-.score progress[value]::-webkit-progress-value {
-  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, hsl(226deg, 89%, 73%), hsl(0deg, 0%, 89%));
+.score-container progress[value]::-webkit-progress-value {
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, hsl(226deg, 89%, 73%), hsl(186deg, 35%, 83%));
   border-radius: 50px;
   background-size: 35px 20px, 100% 100%, 100% 100%;
 }
-.score progress::-webkit-progress-bar {
+.score-container progress::-webkit-progress-bar {
   background-color: rgb(255, 255, 255);
 }
 
 .dead {
   background-color: red;
+}
+.dead * {
+  color: pink;
 }
 .dead input, .dead input:active, .dead input:focus, .dead select, .dead button {
   -webkit-appearance: none;
@@ -117,6 +192,6 @@ ul li {
 .dead progress::-webkit-progress-bar {
   background-color: red;
 }
-.dead progress[value]::-webkit-progress-value {
+.dead progress[value]::-webkit-progress-value, .dead button:hover, .dead input:hover, .dead select:hover {
   background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, rgb(59, 0, 0), rgb(247, 0, 95));
 }/*# sourceMappingURL=style.css.map */

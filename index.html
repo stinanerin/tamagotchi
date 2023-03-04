@@ -26,31 +26,34 @@
     <main>
 
         <div id="petContainer" >
-        
-        
-        
+            <!-- Display of user created pets-->
         </div>
 
         <form id="createTamagotchi">
-            <label for="tName">What is my name?
-                <input id="tName" type="text" placeholder="Name" required />
-            </label>
-            <select id="tType" required>
-                <option value="" disabled selected hidden>What am I like</option>
-                <option >(๑-﹏-๑)</option>
-                <option >(๑•̀ ᴖ •́)૭</option>
-                <option >(˵ •̀ ᴗ - ˵ ) ✧)</option>
-            </select>
-        
-            <button type="submit" id="createBtn">Let´s play</button>
+            <div class="form-wrapper">
+                <div class="column">
+                    <label for="tName">What is my name?</label>
+                    <input id="tName" type="text" placeholder="Name" required />
+                </div>
+                
+                <div>
+                    <select id="tType" required>
+                        <option value="" disabled selected hidden>What am I like</option>
+                        <option >(๑-﹏-๑)</option>
+                        <option >(๑•̀ ᴖ •́)૭</option>
+                        <option >(˵ •̀ ᴗ - ˵ ) ✧)</option>
+                    </select>
+                </div>
+                <div><button type="submit" id="createBtn">Let´s play</button></div>
+            </div>
 
         </form>
 
 
-        <div id="gameContainer">
+        <div id="gameContainer" >
 
-
-
+            
+          
         </div>
 
 

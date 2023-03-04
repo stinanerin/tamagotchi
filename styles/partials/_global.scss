@@ -10,12 +10,36 @@
 body, h1, h2, h3, h4, p {
     margin: 0;
 }
-
 body, button, input, select  {
     font-family: $body;
     font-size: 1rem;
     line-height: 1.5; 
     color: $p-black;
+    background-color: transparent;
+
+}
+button, input, select {
+    padding: 0.5rem 1rem;
+    border: none;
+    transition: $transition;
+    border-radius: 2rem;
+    height: 3rem;
+
+    &:hover {
+        background-image:
+        -webkit-linear-gradient(top, 
+                                rgba(255, 255, 255, 0), 
+                                rgba(244, 239, 239, 0)),
+        -webkit-linear-gradient(left, $purple, $blue);
+        border-radius: 50px; 
+        background-size: 35px 20px, 100% 100%, 100% 100%;  
+        border-radius: 0.5rem;
+    }
+}
+
+input {
+    border-bottom: 1px solid $p-black;
+
 }
 
 h1, h2, h3, h4 {
@@ -23,22 +47,21 @@ h1, h2, h3, h4 {
     line-height: 1;
     font-weight: 900;
     color: $p-black;
-  
-}
-h1, h2, h3, h4, p {
-    /* Får utrymme av sin egen font-storlek */
     margin-bottom: 1em;
 }
 
 .text-center {
     text-align: center;
 }
+.column {
+    @include flex(column);
+}
 
 .hidden {
     display: none;
 }
 
-/* ----------------------------- */
+/* HEADER */
 header {
     padding: 3rem 0;
     h2 {
@@ -46,30 +69,63 @@ header {
     }
 }
 
-ul {
-    padding-left: 0;
-    li {
-        list-style: none;
-        @include flex (column, center, center);
+/* MAIN */
+body{
+    @include flex (column, center, center);
+    /* UL */
+    .pet-row {
+        @include flex(row, center, center);
+        gap: 5%;
+        padding-left: 0;
+        li {
+            list-style: none;
+            @include flex (column, center, center);
+        }
+    }
+    .game-wrapper {
+        @include flex (row, center, center);
+        gap: 8%;
 
+        .game-pet {
+               
+            .pet-container {
+                font-size: 1.8rem;
+                @media($sm) {
+                    color: pink;
+                    font-size: 3rem;
+
+                }
+            }
+        }
+    }
+    .game-buttons {
+        @include flex (column, center, center);
+        margin-top: 2rem;
+        i {
+            font-size: 2rem;
+        }
+      
+    }
+    .form-wrapper {
+        @include flex (column, center, center);
+        @media($sm) {
+            @include flex (row, center, end);
+            // justify-content:end ;
+        }
     }
 }
 
 
-.pet-row {
-    @include flex;
-    gap: 5%;
-}
 
 /* Progress bar */
-.score {
-    @include flex(column);
+.score-container {
+    @include flex(column, center);
+    
     label {
         font-weight: 900;
     }
-
     progress:not([value]) {
-        border-radius: 50px; 
+        border-radius: 100; 
     }
     progress[value] {
         /* Reset the default appearance */
@@ -85,7 +141,7 @@ ul {
             -webkit-linear-gradient(top, 
                                     rgba(255, 255, 255, 0), 
                                     rgba(244, 239, 239, 0)),
-            -webkit-linear-gradient(left, $purple, $pale-purple);
+            -webkit-linear-gradient(left, $purple, $blue);
         border-radius: 50px; 
         background-size: 35px 20px, 100% 100%, 100% 100%;
     }
@@ -97,6 +153,10 @@ ul {
 
 .dead {
     background-color: red;
+    * {
+        color: pink;
+    }
+
     input, input:active, input:focus, select, button {
         -webkit-appearance: none;
         appearance: none;       
@@ -106,7 +166,7 @@ ul {
     progress::-webkit-progress-bar {
         background-color: red; 
     }
-    progress[value]::-webkit-progress-value {
+    progress[value]::-webkit-progress-value, button:hover, input:hover, select:hover  {
         background-image:
             -webkit-linear-gradient(top, 
                                     rgba(255, 255, 255, 0), 

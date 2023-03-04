@@ -5,9 +5,17 @@ $body: monospace;
 // Colors
 $gradient: linear-gradient(hsl(0, 0, 89, 100%), hsl(226, 89, 73, 100%));
 $purple: hsl(226, 89, 73, 100%);
-$pale-purple: hsl(0, 0, 89, 100%);
+$grey: hsl(0, 0, 89, 100%);
 $blue: hsl(186, 35%, 83%);
 $beige: hsl(36, 19%, 95%);
 
 $p-black: #000;
 $p-white: #fff;
+
+// Breakpoints
+$sm: "width >= 440px";
+$md: "width >= 768px";
+$lg: "width >= 992px";
+$xl: "width >= 1200px";
+
+$transition: .5s;

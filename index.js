@@ -3,6 +3,8 @@
 let action;
 let petArr = [];
 
+
+
 let container = document.querySelector("#gameContainer")
 let tForm = document.querySelector('#createTamagotchi');
 
@@ -50,6 +52,8 @@ class Tamagotchi {
         if(need <= 0) {
             need = 0;
             document.body.classList.add("dead"); 
+            action = `You killed ${this.name}`;
+
             //todo! renderModal()
             
         } else if( need > 100) {
@@ -64,33 +68,47 @@ class Tamagotchi {
         document.body.classList.remove("dead")
       
         container.innerHTML = `
-            <div class="score">
-                <label for="sleepProgress">Tiredness:
-                    <span id="sleep-score">${this.checkScore(this.tiredness)}</span>
-                    <progress id="sleepProgress" value="${this.tiredness}" max="100"></progress>
-                </label>
-                <label for="hungerProgress">Hunger:
-                    <span id="hunger-score">${this.checkScore(this.hunger)}</span>
-                    <progress id="hungerProgress" value="${this.hunger}" max="100"></progress>
-                </label>
-                <label for="lonelyProgress">Loneliness:
-                    <span id="lonely-score">${this.checkScore(this.loneliness)}</span>
-                    <progress id="lonelyProgress" value="${this.loneliness}" max="100"></progress>
-                </label>
-                <label for="happyProgress">Happiness:
-                    <span id="happy-score">${this.checkScore(this.happiness)}</span>
-                    <progress id="happyProgress" value="${this.happiness}" max="100"></progress>
-                </label>
-            </div>
-            <div class="game-pet">
-                <div class="pet-container">
-                    <h4>${this.name}</h4>
-                    <p>${this.animalType}</p>
+            <div class="game-wrapper">
+                <div class="game-pet">
+                    <div class="pet-container">
+                        <h4 class="text-center">${this.name}</h4>
+                        <p class="text-center">${this.animalType}</p>
+                    </div>
                 </div>
-                <div class="game-buttons">
+                <div class="score-container">
+                    <div class="column">
+                        <label for="sleepProgress">Tiredness:
+                            <span id="sleep-score">${this.checkScore(this.tiredness)}</span>
+                        </label>
+                        <progress id="sleepProgress" value="${this.tiredness}" max="100"></progress>
+                    </div>
+                    <div class="column">
+                        <label for="hungerProgress">Hunger:
+                            <span id="hunger-score">${this.checkScore(this.hunger)}</span>
+                        </label>
+                        <progress id="hungerProgress" value="${this.hunger}" max="100"></progress>
+                    </div>
+                    <div class="column">
+                        <label for="lonelyProgress">Loneliness:
+                            <span id="lonely-score">${this.checkScore(this.loneliness)}</span>
+                        </label>
+                        <progress id="lonelyProgress" value="${this.loneliness}" max="100"></progress>
+                    </div>
+                    <div class="column">
+                        <label for="happyProgress">Happiness:
+                            <span id="happy-score">${this.checkScore(this.happiness)}</span>
+                        </label>
+                        <progress id="happyProgress" value="${this.happiness}" max="100"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="game-buttons">
+                <div>
                     <button id="eat" ><i class="fa-solid fa-cookie-bite"></i></button>
                     <button id="play" ><i class="fa-solid fa-otter"></i></button>
                     <button id="sleep" ><i class="fa-solid fa-moon"></i></button>
+                </div>
+                <div>
                     <p>${action ? action : ""}</p>
                 </div>
             </div>
@@ -104,9 +122,7 @@ class Tamagotchi {
     }
 }
 
-
 // -------------------------------------------- FORM: User input for creating Pet --------------------------------------------
-
 
 tForm.addEventListener("submit", (e) => {
     e.preventDefault()
@@ -129,7 +145,7 @@ function renderPetArr(arr) {
 
     let petDisplay = document.querySelector('#petContainer');
     petDisplay.innerHTML = `
-        <h3>All of my friends</h3>
+        <h3 class="text-center">All of my friends</h3>
         <ul class="pet-row"></ul>
     `
     let petRow = document.querySelector('.pet-row');
@@ -138,11 +154,15 @@ function renderPetArr(arr) {
     arr.forEach(pet => {
         petRow.innerHTML += `
             <li class="pet-container">
-                <h4>${pet.name}</h4>
+                <h4 >${pet.name}</h4>
                 <p>${pet.animalType}</p>
             </li>
         `
     });
 }
+let bert = new Tamagotchi("Bert", "(˵ •̀ ᴗ - ˵ ) ✧)");
+bert.renderPet()
 
+petArr.push(bert);
+renderPetArr(petArr)
    
