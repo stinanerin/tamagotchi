@@ -19,41 +19,51 @@ class Tamagotchi {
         this.tiredness += 30;
         this.hunger -= 15;
         this.loneliness -= 20;
-        this.happiness -= 25;
+        this.happiness -= 15;
         action = `You took a nap with ${this.name}`;
-        this.checkMinMax()
         this.renderPet();
     }
     play() {
         if (this.tiredness > 30) {
-            this.tiredness -= 20;
-            this.hunger -= 20;
+            this.tiredness -= 15;
+            this.hunger -= 15;
             this.loneliness += 20;
             this.happiness += 30;
             action = `You played with ${this.name}`;
         } else {
             action = `No bueno, ${this.name} is too tired to play`;
         }
-        this.checkMinMax()
         this.renderPet();
     }
     eat() {
         this.tiredness -= 15;
         this.hunger += 30;
         action= `You ate with ${this.name}`;
-        this.checkMinMax()
         this.renderPet();
+    }
+    interval() {
+        const intervalId = setInterval(() => {
+            this.tiredness -= 5;
+            this.hunger -= 5;
+            this.happiness -= 5;
+            this.loneliness -= 5;
 
+            this.checkMinMax()
+            this.renderPet();
+        }, 2000);
     }
     deadCheck(need) {
+        console.log("need", need);
+        console.log(this);
+
         if(need <= 0) {
             need = 0;
             document.body.classList.add("dead"); 
             action = `You killed ${this.name}`;
-            //todo! renderModal()
+            //todo! renderRestart();
+            renderRestart();
         } 
-        this.checkMinMax()
-        return need
+        return need;
     }
     checkMinMax() {
         if (this.tiredness > 100) this.tiredness = 100;
@@ -65,13 +75,8 @@ class Tamagotchi {
         if (this.happiness < 0) this.happiness = 0;
         if (this.loneliness < 0) this.loneliness = 0;
     }
-   
-    
-    // -------------------------------------------- Render user pet --------------------------------------------
     renderPet(){
-
-        document.body.classList.remove("dead")
-   
+        document.body.classList.remove("dead");
 
         container.innerHTML = `
             <div class="game-wrapper">
@@ -106,7 +111,7 @@ class Tamagotchi {
                 <div>
                     <button id="eat" ><i class="fa-solid fa-cookie-bite"></i></button>
                     <button id="play" ><i class="fa-solid fa-otter"></i></button>
-                    <button id="sleep" ><i class="fa-solid fa-moon"></i></button>
+                    <button id="sleep"><i class="fa-solid fa-moon"></i></button>
                 </div>
                 <div>
                     <p>${action ? action : ""}</p>
@@ -117,9 +122,10 @@ class Tamagotchi {
         // All game-play event-listeners
         document.querySelector("#sleep").addEventListener("click", () => this.nap())
         document.querySelector("#eat").addEventListener("click", () => this.eat())
-        document.querySelector("#play").addEventListener("click", () =>  this.play())
+        document.querySelector("#play").addEventListener("click", () =>  this.play())      
     }
 }
+
 
 // -------------------------------------------- FORM: User input for creating Pet --------------------------------------------
 
@@ -129,8 +135,10 @@ tForm.addEventListener("submit", (e) => {
     // Create a new instance of the Tamagotchi prototype from user input
     let tamName = document.querySelector('#tName').value;
     let tamType = document.querySelector("#tType").value;
+
     let newPet = new Tamagotchi(tamName, tamType)
     newPet.renderPet()
+    newPet.interval()
     petArr.push(newPet)
     renderPetArr(petArr)
 })
@@ -154,6 +162,7 @@ function renderPetArr(arr) {
             </li>
         `
     });
+    
     document.querySelectorAll(".pet-wrapper").forEach((item) => {
         item.addEventListener("click", () => {
             const findPet = pet => pet.name === item.dataset.name;
@@ -161,10 +170,27 @@ function renderPetArr(arr) {
         })
     })
 }
+function renderRestart() {
+    // console.log(this.interval());
+    // console.log(this.interval.intervalId);
+    // console.log(clearInterval(this.intervalId));
+    // console.log(this.clearInterval(interval().intervalId));
+    // this.clearInterval(interval().intervalId)
+
+    //todo! Restart function
+    // let restartBtn = document.createElement("button");
+    // restartBtn.innerText = "Restart";
+    // document.body.append(restartBtn);
+    // restartBtn.addEventListener("click", ()=>{
+    //   location.reload();
+    // })
+
+
+}
 
 //! Test för styling
-let bert = new Tamagotchi("Bert", "(˵ •̀ ᴗ - ˵ ) ✧)");
-bert.renderPet()
+// let bert = new Tamagotchi("Bert", "(˵ •̀ ᴗ - ˵ ) ✧)");
+// bert.renderPet()
 
-petArr.push(bert);
-renderPetArr(petArr)
+// petArr.push(bert);
+// renderPetArr(petArr)
