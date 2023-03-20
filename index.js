@@ -4,6 +4,7 @@ let action;
 let petArr = [];
 let container = document.querySelector("#gameContainer")
 let tForm = document.querySelector('#createTamagotchi');
+let intervalId;
 
 // -------------------------------------------- Tamagotchi prototype --------------------------------------------
 class Tamagotchi {
@@ -42,12 +43,11 @@ class Tamagotchi {
         this.renderPet();
     }
     interval() {
-        const intervalId = setInterval(() => {
+        intervalId = setInterval(() => {
             this.tiredness -= 5;
             this.hunger -= 5;
             this.happiness -= 5;
             this.loneliness -= 5;
-
             this.checkMinMax()
             this.renderPet();
         }, 2000);
@@ -60,7 +60,6 @@ class Tamagotchi {
             need = 0;
             document.body.classList.add("dead"); 
             action = `You killed ${this.name}`;
-            //todo! renderRestart();
             renderRestart();
         } 
         return need;
@@ -135,11 +134,13 @@ tForm.addEventListener("submit", (e) => {
     // Create a new instance of the Tamagotchi prototype from user input
     let tamName = document.querySelector('#tName').value;
     let tamType = document.querySelector("#tType").value;
-
     let newPet = new Tamagotchi(tamName, tamType)
+
+    // Renders selected pet
     newPet.renderPet()
     newPet.interval()
     petArr.push(newPet)
+    // Renders all created pets to choose from in "gallery"
     renderPetArr(petArr)
 })
 
@@ -171,21 +172,15 @@ function renderPetArr(arr) {
     })
 }
 function renderRestart() {
-    // console.log(this.interval());
-    // console.log(this.interval.intervalId);
-    // console.log(clearInterval(this.intervalId));
-    // console.log(this.clearInterval(interval().intervalId));
-    // this.clearInterval(interval().intervalId)
-
-    //todo! Restart function
-    // let restartBtn = document.createElement("button");
-    // restartBtn.innerText = "Restart";
-    // document.body.append(restartBtn);
-    // restartBtn.addEventListener("click", ()=>{
-    //   location.reload();
-    // })
-
-
+    //todo! Disabla alla knappar 
+    //todo! Rensa domen när man byter karaktär?
+    clearInterval(intervalId)
+    let restartBtn = document.createElement("button");
+    restartBtn.innerText = "Restart";
+    document.body.append(restartBtn);
+    restartBtn.addEventListener("click", ()=>{
+      location.reload();
+    })
 }
 
 //! Test för styling
