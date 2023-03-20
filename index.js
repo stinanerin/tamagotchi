@@ -22,6 +22,7 @@ class Tamagotchi {
         this.loneliness -= 20;
         this.happiness -= 15;
         action = `You took a nap with ${this.name}`;
+        this.checkMinMax()
         this.renderPet();
     }
     play() {
@@ -34,13 +35,15 @@ class Tamagotchi {
         } else {
             action = `No bueno, ${this.name} is too tired to play`;
         }
+        this.checkMinMax()
         this.renderPet();
     }
     eat() {
         this.tiredness -= 15;
         this.hunger += 30;
         action= `You ate with ${this.name}`;
-        this.renderPet();
+        this.checkMinMax()
+        this.renderPet()
     }
     interval() {
         intervalId = setInterval(() => {
@@ -65,6 +68,7 @@ class Tamagotchi {
         return need;
     }
     checkMinMax() {
+        console.log("hej");
         if (this.tiredness > 100) this.tiredness = 100;
         if (this.hunger > 100) this.hunger = 100;
         if (this.happiness > 100) this.happiness = 100;
