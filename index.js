@@ -1,7 +1,7 @@
 // -------------------------------------------------------- Set up -----------------------------------------------------------
 
-let container = document.querySelector("#gameContainer")
-let tForm = document.querySelector('#createTamagotchi');
+const container = document.querySelector("#gameContainer")
+const tForm = document.querySelector('#createTamagotchi');
 let petArr = [];
 let action;
 let intervalId;
@@ -156,7 +156,7 @@ tForm.addEventListener("submit", (e) => {
 
 // -------------------------------------------- Render all the user created pets --------------------------------------------
 
-function renderPetArr(arr) {
+let renderPetArr = (arr) => {
 
     let petDisplay = document.querySelector('#petContainer');
     petDisplay.innerHTML = `
@@ -181,7 +181,7 @@ function renderPetArr(arr) {
         })
     })
 }
-function renderRestart() {
+let renderRestart = () => {
 
     clearInterval(intervalId)
     let restartBtn = document.createElement("button");
