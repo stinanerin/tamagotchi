@@ -68,7 +68,6 @@ class Tamagotchi {
         return need;
     }
     checkMinMax() {
-        console.log("hej");
         if (this.tiredness > 100) this.tiredness = 100;
         if (this.hunger > 100) this.hunger = 100;
         if (this.happiness > 100) this.happiness = 100;
@@ -139,16 +138,20 @@ tForm.addEventListener("submit", (e) => {
     e.preventDefault()
 
     // Create a new instance of the Tamagotchi prototype from user input
-    let tamName = document.querySelector('#tName').value;
-    let tamType = document.querySelector("#tType").value;
-    let newPet = new Tamagotchi(tamName, tamType)
+    let tamName = document.querySelector('#tName');
+    let tamType = document.querySelector("#tType");
+    let newPet = new Tamagotchi(tamName.value, tamType.value)
 
-    // Renders selected pet
+    // Renders selected pet & starts interval
     newPet.renderPet()
     newPet.interval()
-    petArr.push(newPet)
-    // Renders all created pets to choose from in "gallery"
-    renderPetArr(petArr)
+
+    tamName.value = ""
+    tamType.value = ""
+
+    //! Renders all created pets to choose from in "gallery" - choosing not working yet
+    // petArr.push(newPet)
+    // renderPetArr(petArr)
 })
 
 // -------------------------------------------- Render all the user created pets --------------------------------------------

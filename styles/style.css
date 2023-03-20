@@ -19,6 +19,13 @@ body, button, input, select {
   background-color: transparent;
 }
 
+input, input:active, input:focus, select, button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  background-color: hsl(226deg, 89%, 73%);
+}
+
 button, input, select {
   padding: 0.5rem 1rem;
   border: none;

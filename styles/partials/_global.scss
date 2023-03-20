@@ -18,6 +18,12 @@ body, button, input, select  {
     background-color: transparent;
 
 }
+input, input:active, input:focus, select, button {
+    -webkit-appearance: none;
+    appearance: none;       
+    background-color: $purple; 
+}
+
 button, input, select {
     padding: 0.5rem 1rem;
     border: none;
@@ -39,7 +45,6 @@ button, input, select {
 
 input {
     border-bottom: 1px solid $p-black;
-
 }
 
 h1, h2, h3, h4 {
@@ -165,7 +170,6 @@ body{
         -webkit-appearance: none;
         appearance: none;       
         background-color: rgb(52, 0, 0); 
-
     }
     progress::-webkit-progress-bar {
         background-color: pink; 
