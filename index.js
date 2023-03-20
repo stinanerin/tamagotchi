@@ -1,11 +1,10 @@
 // -------------------------------------------------------- Set up -----------------------------------------------------------
 
-let action;
-let petArr = [];
 let container = document.querySelector("#gameContainer")
 let tForm = document.querySelector('#createTamagotchi');
+let petArr = [];
+let action;
 let intervalId;
-let actionBtns;
 let dead = false;
 
 // -------------------------------------------- Tamagotchi prototype --------------------------------------------
