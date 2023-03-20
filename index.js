@@ -5,6 +5,8 @@ let petArr = [];
 let container = document.querySelector("#gameContainer")
 let tForm = document.querySelector('#createTamagotchi');
 let intervalId;
+let actionBtns;
+let dead = false;
 
 // -------------------------------------------- Tamagotchi prototype --------------------------------------------
 class Tamagotchi {
@@ -56,13 +58,12 @@ class Tamagotchi {
         }, 2000);
     }
     deadCheck(need) {
-        console.log("need", need);
-        console.log(this);
-
-        if(need <= 0) {
+        // Prevents deadCheck() from running four times for each proressBar if user never clicks btn and pet dies from interval only
+        if(need <= 0 && !dead) {
             need = 0;
             document.body.classList.add("dead"); 
             action = `You killed ${this.name}`;
+            dead = true
             renderRestart();
         } 
         return need;
@@ -110,22 +111,25 @@ class Tamagotchi {
                     </div>
                 </div>
             </div>
-            <div class="game-buttons">
-                <div>
-                    <button id="eat" ><i class="fa-solid fa-cookie-bite"></i></button>
-                    <button id="play" ><i class="fa-solid fa-otter"></i></button>
-                    <button id="sleep"><i class="fa-solid fa-moon"></i></button>
+            <div class="action-container">
+                <div class="game-buttons">
+                    <button id="eat" class="action"><i class="fa-solid fa-cookie-bite"></i></button>
+                    <button id="play" class="action"><i class="fa-solid fa-otter"></i></button>
+                    <button id="sleep" class="action"><i class="fa-solid fa-moon"></i></button>
                 </div>
                 <div>
                     <p>${action ? action : ""}</p>
                 </div>
             </div>
         `
-        
-        // All game-play event-listeners
-        document.querySelector("#sleep").addEventListener("click", () => this.nap())
-        document.querySelector("#eat").addEventListener("click", () => this.eat())
-        document.querySelector("#play").addEventListener("click", () =>  this.play())      
+        // If character is dead - do not apply event listeners
+        // disable doesn't work since I currently redraw  the DOM: for each change:-/
+        if(!dead) {
+            // All game-play event-listeners
+            document.querySelector("#sleep").addEventListener("click", () => this.nap())
+            document.querySelector("#eat").addEventListener("click", () => this.eat())
+            document.querySelector("#play").addEventListener("click", () =>  this.play())      
+        }
     }
 }
 
@@ -176,7 +180,7 @@ function renderPetArr(arr) {
     })
 }
 function renderRestart() {
-    //todo! Disabla alla knappar 
+
     //todo! Rensa domen när man byter karaktär?
     clearInterval(intervalId)
     let restartBtn = document.createElement("button");

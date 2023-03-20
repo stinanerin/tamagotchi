@@ -108,11 +108,10 @@ body .game-wrapper .game-pet .pet-container {
 }
 @media (width >= 440px) {
   body .game-wrapper .game-pet .pet-container {
-    color: pink;
     font-size: 3rem;
   }
 }
-body .game-buttons {
+body .action-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -120,7 +119,7 @@ body .game-buttons {
   flex-wrap: wrap;
   margin-top: 2rem;
 }
-body .game-buttons i {
+body .action-container i {
   font-size: 2rem;
 }
 body .form-wrapper {

@@ -91,14 +91,14 @@ body{
             .pet-container {
                 font-size: 1.8rem;
                 @media($sm) {
-                    color: pink;
+                    // color: pink;
                     font-size: 3rem;
 
                 }
             }
         }
     }
-    .game-buttons {
+    .action-container {
         @include flex (column, center, center);
         margin-top: 2rem;
         i {
