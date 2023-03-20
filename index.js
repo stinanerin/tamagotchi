@@ -5,7 +5,6 @@ let tForm = document.querySelector('#createTamagotchi');
 let petArr = [];
 let action;
 let intervalId;
-let dead = false;
 
 // -------------------------------------------- Tamagotchi prototype --------------------------------------------
 class Tamagotchi {
@@ -16,6 +15,7 @@ class Tamagotchi {
         this.hunger = hunger;
         this.loneliness = loneliness;
         this.happiness = happiness;
+        this.isDead = false;
     }
     nap() {
         this.tiredness += 30;
@@ -58,11 +58,11 @@ class Tamagotchi {
     }
     deadCheck(need) {
         // Prevents deadCheck() from running four times for each proressBar if user never clicks btn and pet dies from interval only
-        if(need <= 0 && !dead) {
+        if(need <= 0 && !this.isDead) {
             need = 0;
             document.body.classList.add("dead"); 
             action = `You killed ${this.name}`;
-            dead = true
+            this.isDead = true
             renderRestart();
         } 
         return need;
@@ -123,7 +123,7 @@ class Tamagotchi {
         `
         // If character is dead - do not apply event listeners
         // disable doesn't work since I currently redraw  the DOM: for each change:-/
-        if(!dead) {
+        if(!this.isDead) {
             // All game-play event-listeners
             document.querySelector("#sleep").addEventListener("click", () => this.nap())
             document.querySelector("#eat").addEventListener("click", () => this.eat())
@@ -180,7 +180,6 @@ function renderPetArr(arr) {
 }
 function renderRestart() {
 
-    //todo! Rensa domen när man byter karaktär?
     clearInterval(intervalId)
     let restartBtn = document.createElement("button");
     restartBtn.innerText = "Restart";
