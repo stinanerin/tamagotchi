@@ -110,13 +110,13 @@ class Tamagotchi {
                 </div>
             </div>
             <div class="action-container">
+                <div>
+                    <p>${action ? action : ""}</p>
+                </div>
                 <div class="game-buttons">
                     <button id="eat" class="action"><i class="fa-solid fa-cookie-bite"></i></button>
                     <button id="play" class="action"><i class="fa-solid fa-otter"></i></button>
                     <button id="sleep" class="action"><i class="fa-solid fa-moon"></i></button>
-                </div>
-                <div>
-                    <p>${action ? action : ""}</p>
                 </div>
             </div>
         `
@@ -192,9 +192,3 @@ let renderRestart = () => {
     })
 }
 
-//! Test för styling
-// let bert = new Tamagotchi("Bert", "(˵ •̀ ᴗ - ˵ ) ✧)");
-// bert.renderPet()
-
-// petArr.push(bert);
-// renderPetArr(petArr)

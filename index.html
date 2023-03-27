@@ -15,9 +15,9 @@
     />
     <link rel="stylesheet" href="styles/style.css">
     <script src="index.js" defer></script>
-    
 </head>
-<body >
+<body>
+
     <header>
         <h1 class="text-center">Tamagotchi</h1>
         <h2 class="text-center">Don't kill me pls</h2>
@@ -26,7 +26,7 @@
     <main>
 
         <div id="petContainer" >
-            <!-- Display of user created pets-->
+            <!-- Display of users created pets-->
         </div>
 
         <form id="createTamagotchi">
@@ -36,26 +36,22 @@
                     <input id="tName" type="text" placeholder="Name" required />
                 </div>
                 
-                <div>
+                <div class="form-row">
                     <select id="tType" required>
                         <option value="" disabled selected hidden>What am I like</option>
                         <option >(๑-﹏-๑)</option>
                         <option >(๑•̀ ᴖ •́)૭</option>
                         <option >(˵ •̀ ᴗ - ˵ ) ✧)</option>
                     </select>
+                    <button type="submit" id="createBtn">Let´s play</button>
                 </div>
-                <div><button type="submit" id="createBtn">Let´s play</button></div>
             </div>
 
         </form>
-      
-
+    
         <div id="gameContainer" >
-
-            
           
         </div>
-
 
     </main>
 </body>

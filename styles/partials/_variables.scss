@@ -3,14 +3,17 @@ $heading-primary: SelectMono, serif;
 $body: monospace;
 
 // Colors
-$gradient: linear-gradient(hsl(0, 0, 89, 100%), hsl(226, 89, 73, 100%));
-$purple: hsl(226, 89, 73, 100%);
-$grey: hsl(0, 0, 89, 100%);
+$purple: hsl(226, 88%, 73%);
+$purple-50: hsla(226, 88%, 73%, 0.376);
+$grey: hsl(0, 0%, 89%);
 $blue: hsl(186, 35%, 83%);
 $beige: hsl(36, 19%, 95%);
 
 $p-black: #000;
 $p-white: #fff;
+
+// $gradient: linear-gradient($grey, $purple);
+
 
 // Breakpoints
 $sm: "width >= 440px";

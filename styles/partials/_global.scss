@@ -2,7 +2,24 @@
 //     outline: 1px solid pink;
 // }
 
+/* Helpers */
+
+.text-center {
+    text-align: center;
+}
+.column {
+    @include flex(column);
+}
+.row {
+    @include flex;
+}
+
+.hidden {
+    display: none;
+}
+
 /* Set up */
+
 *, *:before, *:after {
     box-sizing: border-box;
 }
@@ -15,36 +32,34 @@ body, button, input, select  {
     font-size: 1rem;
     line-height: 1.5; 
     color: $p-black;
-    background-color: transparent;
-
 }
 input, input:active, input:focus, select, button {
     -webkit-appearance: none;
     appearance: none;       
-    background-color: $purple; 
+    background-color: $purple-50; 
 }
 
 button, input, select {
     padding: 0.5rem 1rem;
-    border: none;
     transition: $transition;
-    border-radius: 2rem;
     height: 3rem;
-
+    border: none;
+    border-radius: 2rem;
     &:hover {
         background-image:
-        -webkit-linear-gradient(left, 
-                                rgba(255, 255, 255, 0), 
-                                rgba(244, 239, 239, 0)),
-        -webkit-linear-gradient(top, $purple, $blue);
-        border-radius: 50px; 
+            -webkit-linear-gradient(left, 
+                                    rgba(255, 255, 255, 0), 
+                                    rgba(244, 239, 239, 0)),
+            -webkit-linear-gradient(top, $purple, $blue);
         background-size: 35px 20px, 100% 100%, 100% 100%;  
-        border-radius: 0.5rem;
     }
 }
 
 input {
     border-bottom: 1px solid $p-black;
+    &::placeholder {
+        color: $p-black;
+    }
 }
 
 h1, h2, h3, h4 {
@@ -52,23 +67,12 @@ h1, h2, h3, h4 {
     line-height: 1;
     font-weight: 900;
     color: $p-black;
-    margin-bottom: 1em;
-}
-
-.text-center {
-    text-align: center;
-}
-.column {
-    @include flex(column);
-}
-
-.hidden {
-    display: none;
+    margin-bottom: 0.8em;
 }
 
 /* HEADER */
 header {
-    padding: 3rem 0;
+    padding: 1rem 0;
     h2 {
         font-size: 1rem;
     }
@@ -90,37 +94,58 @@ body{
     .game-wrapper {
         @include flex (row, center, center);
         gap: 8%;
-
         .game-pet {
-               
             .pet-container {
                 font-size: 1.8rem;
+                margin: 2rem 0;
                 @media($sm) {
                     // color: pink;
-                    font-size: 3rem;
-
+                    font-size: 2rem;
                 }
             }
         }
     }
     .action-container {
         @include flex (column, center, center);
-        margin-top: 2rem;
+        // margin-top: 2rem;
         i {
             font-size: 2rem;
+        }
+        p {
+            margin-top: 1em;
+        }
+        .game-buttons {
+            margin: 1rem;
         }
       
     }
     .form-wrapper {
-        @include flex (column, center, center);
-        @media($sm) {
-            @include flex (row, center, end);
-            // justify-content:end ;
+        @include flex (column, space-between);
+
+        gap: 0.5rem;
+        div {
+            gap: 0.5rem;
+            min-width: 100%;
+            input, select, button {
+                min-width: 100%;
+            }
+            label {
+                padding-left: 1rem;
+            }
         }
+        .form-row {
+            @include flex(column);
+            @media($sm) {
+                @include flex(row);
+                select, button {
+                    min-width: unset;
+                    flex:1;
+                }
+            }
+        }
+       
     }
 }
-
-
 
 /* Progress bar */
 .score-container {
@@ -157,7 +182,6 @@ body{
         background-color: $grey; 
         border-radius: 50px; 
     }
-
 }
 
 .dead {
@@ -165,7 +189,6 @@ body{
     *, input::placeholder {
         color: pink;
     }
-
     input, input:active, input:focus, select, button {
         -webkit-appearance: none;
         appearance: none;       
@@ -174,21 +197,21 @@ body{
     progress::-webkit-progress-bar {
         background-color: pink; 
         border-radius: 50px; 
-
     }
-    progress[value]::-webkit-progress-value, button:hover, input:hover, select:hover  {
+    progress[value]::-webkit-progress-value {
         background-image:
             -webkit-linear-gradient(top, 
                                     rgba(255, 255, 255, 0), 
                                     rgba(244, 239, 239, 0)),
             -webkit-linear-gradient(left, rgb(52, 0, 0), rgb(247, 0, 95));
     }   
-    button:hover, input:hover, select:hover {
-        background-image:
-        -webkit-linear-gradient(left, 
-                                    rgba(255, 255, 255, 0), 
-                                    rgba(244, 239, 239, 0)),
-        -webkit-linear-gradient(top, rgb(52, 0, 0), rgb(247, 0, 95));
+    button, input, select {
+        &:hover {
+            background-image:
+                -webkit-linear-gradient(left, 
+                                            rgba(255, 255, 255, 0), 
+                                            rgba(244, 239, 239, 0)),
+                -webkit-linear-gradient(top, rgb(52, 0, 0), rgb(247, 0, 95));
+        }
     }   
-
 }

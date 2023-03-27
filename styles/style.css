@@ -2,6 +2,31 @@
   font-family: SelectMono;
   src: url(../fonts/SelectMono-Italic.woff);
 }
+/* Helpers */
+.text-center {
+  text-align: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.hidden {
+  display: none;
+}
+
 /* Set up */
 *, *:before, *:after {
   box-sizing: border-box;
@@ -16,32 +41,38 @@ body, button, input, select {
   font-size: 1rem;
   line-height: 1.5;
   color: #000;
-  background-color: transparent;
 }
 
 input, input:active, input:focus, select, button {
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
-  background-color: hsl(226deg, 89%, 73%);
+  background-color: hsla(226deg, 88%, 73%, 0.376);
 }
 
 button, input, select {
   padding: 0.5rem 1rem;
-  border: none;
   transition: 0.5s;
-  border-radius: 2rem;
   height: 3rem;
+  border: none;
+  border-radius: 2rem;
 }
 button:hover, input:hover, select:hover {
-  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(top, hsl(226deg, 89%, 73%), hsl(186deg, 35%, 83%));
-  border-radius: 50px;
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(top, hsl(226deg, 88%, 73%), hsl(186deg, 35%, 83%));
   background-size: 35px 20px, 100% 100%, 100% 100%;
-  border-radius: 0.5rem;
 }
 
 input {
   border-bottom: 1px solid #000;
+}
+input::-moz-placeholder {
+  color: #000;
+}
+input:-ms-input-placeholder {
+  color: #000;
+}
+input::placeholder {
+  color: #000;
 }
 
 h1, h2, h3, h4 {
@@ -49,28 +80,12 @@ h1, h2, h3, h4 {
   line-height: 1;
   font-weight: 900;
   color: #000;
-  margin-bottom: 1em;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.hidden {
-  display: none;
+  margin-bottom: 0.8em;
 }
 
 /* HEADER */
 header {
-  padding: 3rem 0;
+  padding: 1rem 0;
 }
 header h2 {
   font-size: 1rem;
@@ -112,10 +127,11 @@ body .game-wrapper {
 }
 body .game-wrapper .game-pet .pet-container {
   font-size: 1.8rem;
+  margin: 2rem 0;
 }
 @media (width >= 440px) {
   body .game-wrapper .game-pet .pet-container {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 body .action-container {
@@ -124,25 +140,52 @@ body .action-container {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 2rem;
 }
 body .action-container i {
   font-size: 2rem;
 }
+body .action-container p {
+  margin-top: 1em;
+}
+body .action-container .game-buttons {
+  margin: 1rem;
+}
 body .form-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+body .form-wrapper div {
+  gap: 0.5rem;
+  min-width: 100%;
+}
+body .form-wrapper div input, body .form-wrapper div select, body .form-wrapper div button {
+  min-width: 100%;
+}
+body .form-wrapper div label {
+  padding-left: 1rem;
+}
+body .form-wrapper .form-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 @media (width >= 440px) {
-  body .form-wrapper {
+  body .form-wrapper .form-row {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: end;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
+  }
+  body .form-wrapper .form-row select, body .form-wrapper .form-row button {
+    min-width: unset;
+    flex: 1;
   }
 }
 
@@ -177,7 +220,7 @@ body .form-wrapper {
   border-radius: 50px;
 }
 .score-container progress[value]::-webkit-progress-value {
-  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, hsl(226deg, 89%, 73%), hsl(186deg, 35%, 83%));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, hsl(226deg, 88%, 73%), hsl(186deg, 35%, 83%));
   border-radius: 50px;
   background-size: 35px 20px, 100% 100%, 100% 100%;
 }
@@ -208,7 +251,7 @@ body .form-wrapper {
   background-color: pink;
   border-radius: 50px;
 }
-.dead progress[value]::-webkit-progress-value, .dead button:hover, .dead input:hover, .dead select:hover {
+.dead progress[value]::-webkit-progress-value {
   background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(244, 239, 239, 0)), -webkit-linear-gradient(left, rgb(52, 0, 0), rgb(247, 0, 95));
 }
 .dead button:hover, .dead input:hover, .dead select:hover {
